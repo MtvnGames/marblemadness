@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
 		}
 	}
 	
-	public void OnLevelWasLoaded(int levelIndex)
+	public void Start()
 	{
 		marble = GameObject.FindGameObjectWithTag("Player");
 		if(marble)
