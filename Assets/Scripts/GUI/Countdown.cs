@@ -35,7 +35,8 @@ public class Countdown : MonoBehaviour
 		}
 		
 		// update text
-		spriteText.Text = currentCount.ToString();
+		string text = (currentCount == 0) ? "GO!" : currentCount.ToString();
+		spriteText.Text = text;
 		
 		// perform animation
 		iTween.ScaleBy(gameObject, iTween.Hash("amount", new Vector3(2.0f, 2.0f, 1.0f), "time", 1.0f, "oncomplete", "OnCount", "looptype", iTween.LoopType.loop));
@@ -49,7 +50,11 @@ public class Countdown : MonoBehaviour
 		if(currentCount == 0)
 		{
 			OnComplete();
-			return;
+		}
+		else if(currentCount < 0)
+		{
+			iTween.Stop(gameObject);
+			return;	
 		}
 		
 		ShowNextCount();		
@@ -59,7 +64,6 @@ public class Countdown : MonoBehaviour
 	{
 		print("Countdown.OnComplete");
 		
-		iTween.Stop(gameObject);
 			
 		if(Completed != null)
 		{

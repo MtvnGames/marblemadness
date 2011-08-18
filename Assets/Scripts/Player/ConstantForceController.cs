@@ -54,11 +54,17 @@ public class ConstantForceController : MonoBehaviour {
 	{
 		inputForce = Vector3.zero;
 		forceRelativeToCamera = Vector3.zero;
-		rigidbody.velocity = Vector3.zero;
+		if(rigidbody != null)
+		{
+			rigidbody.velocity = Vector3.zero;
+		}
 	}
 	
 	void FixedUpdate()
 	{
-		rigidbody.AddForce(forceRelativeToCamera);
+		if(rigidbody != null)
+		{
+			rigidbody.AddForce(forceRelativeToCamera);
+		}	
 	}
 }

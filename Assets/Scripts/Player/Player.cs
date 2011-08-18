@@ -6,6 +6,18 @@ public class Player : MonoBehaviour
 	public const int STARTING_LIVES = 3;
 	
 	private GameObject marble;
+	public GameObject Marble
+	{
+		get
+		{
+			if(marble == null)
+			{
+				marble = GameObject.FindGameObjectWithTag("Player");
+			}
+			
+			return marble;
+		}
+	}
 	
 	public int score = 0;
 	public int Score
@@ -25,6 +37,11 @@ public class Player : MonoBehaviour
 	{
 		get
 		{
+			if(controller == null)
+			{
+				controller = Marble.GetComponent("ConstantForceController") as ConstantForceController;
+			}
+			
 			return controller;
 		}				
 	}
@@ -44,18 +61,6 @@ public class Player : MonoBehaviour
 		get { return instance; }
 	}
 
-	void Awake ()
-	{
-		if (instance == null) 
-		{
-			instance = this;
-		}
-		else
-		{
-			DestroyImmediate(this);	
-		}
-	}
-	
 	public void Die()
 	{
 		lives--;
@@ -87,22 +92,27 @@ public class Player : MonoBehaviour
 	
 	public void Start()
 	{
-		marble = GameObject.FindGameObjectWithTag("Player");
-		if(marble)
+		
+		if (instance == null) 
 		{
-			controller = marble.GetComponent("ConstantForceController") as ConstantForceController;
+			instance = this;
+		}
+		else
+		{
+			DestroyImmediate(this);	
 		}
 	}
 	
+
 	public void Respawn()
 	{
 		GameObject respawn = GameObject.FindGameObjectWithTag("Respawn") as GameObject;
 		
 		// move the marble to the respawn 
-		marble.transform.position = respawn.transform.position;
-		
+		Marble.transform.position = respawn.transform.position;
+			
 		// cancel/cease any movement
-		marble.constantForce.force = Vector3.zero;
-		marble.rigidbody.velocity = Vector3.zero;
+		Marble.constantForce.force = Vector3.zero;
+		Marble.rigidbody.velocity = Vector3.zero;
 	}
 }

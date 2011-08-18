@@ -3,18 +3,14 @@ using System.Collections;
 
 public class FinishLine : MonoBehaviour {
 
-	void OnTriggerEnter(Collider other)
+	IEnumerator OnTriggerEnter(Collider other)
 	{
 		Debug.Log("Finish!");	
 		
-		ConstantForceController cfc = other.GetComponent("ConstantForceController") as ConstantForceController;
-		cfc.ClearForceAndVelocity();
+		yield return new WaitForSeconds(1.0f);
 		
-		GameObject respawn = GameObject.FindGameObjectWithTag("Respawn") as GameObject;
-		other.transform.position = respawn.transform.position;
-		other.constantForce.force = Vector3.zero;
-		
-		//TODO: Show some level ending GUI
+		Player.Instance.Controller.Enabled = false;
+		Player.Instance.Controller.ClearForceAndVelocity();
 		
 		Game.Instance.LoadNextLevel();
 	}	
