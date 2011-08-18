@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\GUI\Countdown.cs" />
      <Compile Include="Assets\Scripts\GUI\GameOverGUI.cs" />
      <Compile Include="Assets\Scripts\GUI\LevelGUI.cs" />
+     <Compile Include="Assets\Scripts\GUI\LevelSummary.cs" />
      <Compile Include="Assets\Scripts\GUI\MainMenuGUI.cs" />
      <Compile Include="Assets\Scripts\Game\Game.cs" />
      <Compile Include="Assets\Scripts\Game\Level.cs" />

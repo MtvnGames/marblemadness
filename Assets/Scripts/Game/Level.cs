@@ -54,7 +54,7 @@ public class Level : MonoBehaviour
 			AsyncOperation async = Application.LoadLevelAdditiveAsync(GUI_LEVEL_NAME);
 			yield return async;
 			
-			print("Level.GUILoaded");	
+			print("Level.GUILoaded");
 			currentLevel = this;
 		}
 		
