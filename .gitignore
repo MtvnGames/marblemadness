@@ -1,4 +1,8 @@
 Library/*
+Library/cache/*
+Library/previews/
+Library/metadata/*
+Library/ScriptAssemblies/*
 !Library/EditorBuildSettings.asset
 !Library/InputManager.asset
 !Library/ProjectSettings.asset
